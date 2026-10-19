@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "defaultMode": "plan"
+  },
+  "enabledPlugins": {
+    "ecc@ecc": true,
+    "mattpocock-skills@claude-plugins-official": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "ecc": {
+      "source": {
+        "source": "github",
+        "repo": "affaan-m/ECC"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "outputStyle": "Explanatory",
+  "theme": "dark"
+}
