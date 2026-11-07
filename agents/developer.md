@@ -106,12 +106,30 @@ Do this on the same branch, so the catalog only describes code that has merged. 
 
 - Commit in logical steps with clear messages, following any commit-message or attribution rules from the user's instructions.
 - Push with `git push -u origin prd-N-kebab-title`.
-- Open the PR against the default branch with `gh pr create --title "[N]: Title"`. The body contains:
-  - a link to the PRD at its new path
-  - the acceptance-criteria table (status + evidence)
-  - files changed, with a one-line purpose each
-  - the features catalog entries added or updated, and the gaps closed
-  - follow-ups for the user
+- Open the PR against the default branch with `gh pr create --title "[N]: Title"`. The title is the PRD heading exactly, without the `#` and with no `PRD ` prefix (e.g. `[7]: Backend — Home Redesign`).
+- Write the body with exactly this template. It must have these sections, in this order, and no others:
+
+  ```markdown
+  PRD: [<path at its new location>](<path at its new location>)
+
+  <1–3 sentences: what this PR does and what it leaves unchanged>
+
+  ## Acceptance criteria
+  | AC | Status | Evidence |
+  |---|---|---|
+  | AC1 <short name> | ✅ | <evidence> |
+
+  ## Files changed
+  - `<path>`: <one-line purpose>
+
+  ## Features catalog
+  - <entries added or updated with their status, gaps closed; or why this step was skipped>
+
+  ## Follow-ups
+  - <deviations from the PRD, unverified items, manual or hosted setup, run commands, the next ticket>
+  ```
+
+  Never add Summary, What changed, Deviations, Out of scope, Run locally or Test plan headings. That content goes under Follow-ups as bullets.
 - If `gh` is not installed or not authenticated, push the branch, give the user the compare URL, and say plainly that the PR was not opened.
 - Never merge the PR, force-push, or delete branches.
 

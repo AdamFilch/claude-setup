@@ -132,6 +132,7 @@ mkdir -p .claude/prds
 
 **Split tickets**
 - Each PRD stands alone: copy the full Decision Log into both.
+- Both halves share one title: `# [N]: Backend — {Title}` and `# [N]: Frontend — {Title}`, with the same `{Title}`.
 - Link each PRD to the other one in its intro.
 - The backend PRD adds a `## Contract for frontend` section after Readers and lists it in the Table of Contents.
 - The frontend PRD's Required Changes name only files under `app/` and `components/`.
@@ -141,7 +142,8 @@ mkdir -p .claude/prds
 - **Write like a spec, not a form.** Open with an intro that explains what the feature is and how it behaves, in plain prose. Write the rest in short sentences, with tables for anything with columns and `└─►` trees for flows.
 - **Drop sections that don't apply.** Sections marked *(optional)* are left out entirely when they have no content, e.g. a pure restyle has no Data Model, State Machine or Writers. Never leave an empty heading or a "N/A".
 - **Ground everything.** Every table, column, function and file named must either exist today (checked in Phase 2) or be marked **new** in the text. Links are repo-relative.
-- **The Decision Log goes in verbatim**, with the `Claude — straightforward` rows included.
+- **The Decision Log goes in verbatim**, with the `Claude — straightforward` rows included. If one drill produced several tickets, each PRD gets only the rows that ticket depends on, including every `D<n>` it cites, and keeps the original D-numbers.
+- **Titles name the feature only.** No suffixes such as `(build step N)` or `(VoIP push)`.
 - Required Changes stays a practical checklist for the developer, pointing back to the spec sections rather than repeating them.
 
 **How the spec vocabulary maps to this app**
