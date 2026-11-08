@@ -21,7 +21,7 @@ The developer agent implements it and checks its work against the acceptance cri
 | This command does | This command does NOT do |
 |---|---|
 | Frame the problem and users | Write or edit application code |
-| Drill the user on every open decision (via the `drill-me` skill) | Create branches or PRs |
+| Drill the user on every open decision (via the `grill-me` skill) | Create branches or PRs |
 | Read the code the idea touches so the spec names real tables, functions and files | Invent requirements the user did not state |
 | Capture scope, decisions, spec and acceptance criteria | Implement the ticket (that's the developer agent) |
 | Assign a unique ticket ID and write `.claude/prds/{N}-{name}.prd.md` | |
@@ -97,7 +97,7 @@ For a wide area, use an Explore agent. The goal is that the drill only asks real
 
 ### Phase 3 — DRILL
 
-Invoke the **`drill-me`** skill on the framed idea, with what Phase 1 and 2 found as context. Seed the design tree with these branches, and skip a branch when it doesn't apply to the ticket:
+Invoke the **`grill-me`** skill on the framed idea, with what Phase 1 and 2 found as context. Seed the design tree with these branches, and skip a branch when it doesn't apply to the ticket:
 
 1. **Problem and users** (feature tickets only): who has the problem, the observable pain, why existing features don't solve it, why now, evidence, hypothesis.
 2. **Scope**: the MVP, and what is explicitly out of scope and why.
@@ -118,7 +118,7 @@ Invoke the **`drill-me`** skill on the framed idea, with what Phase 1 and 2 foun
 
 Draft acceptance criteria for each half separately.
 
-The drill ends when `drill-me` reports an empty frontier and the user confirms the Decision Log.
+The drill ends when `grill-me` reports an empty frontier and the user confirms the Decision Log.
 
 ### Phase 4 — GENERATE
 

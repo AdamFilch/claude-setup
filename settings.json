@@ -5,26 +5,129 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"const p=require('path');const r=(function(){var p=require('path'),f=require('fs'),o=require('os');var e=process.env.CLAUDE_PLUGIN_ROOT;if(e&&e.trim())return e.trim();var d=p.join(o.homedir(),'.claude');function L(x){try{return require(p.join(x,'scripts','lib','resolve-ecc-root')).resolveEccRoot()}catch(_){return null}}var r=L(d);if(r)return r;var s=['ecc','ecc@ecc','marketplaces/ecc','everything-claude-code','everything-claude-code@everything-claude-code','marketplaces/everything-claude-code'];for(var i=0;i<s.length;i++){r=L(p.join(d,'plugins',s[i]));if(r)return r}try{var g=['ecc','everything-claude-code'];for(var j=0;j<g.length;j++){var c=p.join(d,'plugins','cache',g[j]);var O=f.readdirSync(c);for(var k=0;k<O.length;k++){var q=p.join(c,O[k]);var V=f.readdirSync(q);for(var m=0;m<V.length;m++){r=L(p.join(q,V[m]));if(r)return r}}}}catch(_){}return d})();const s=p.join(r,'scripts/hooks/plugin-hook-bootstrap.js');process.env.CLAUDE_PLUGIN_ROOT=r;process.argv.splice(1,0,s);require(s)\" node scripts/hooks/run-with-flags.js pre:observe scripts/hooks/observe-runner.js standard,strict",
-            "timeout": 10,
-            "async": true
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/opt/homebrew/bin/node' '/opt/homebrew/bin/caveman' shrink-hook",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/adamfilchoir/.local/share/caveman-blocks/bin/caveman-blocks hook --harness claude",
+            "timeout": 5
           }
         ]
       }
     ],
     "Stop": [
       {
-        "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"const fs=require('fs');const path=require('path');const {spawnSync}=require('child_process');const raw=fs.readFileSync(0,'utf8');const finish=(out,err,code)=>{let pending=1;const done=()=>{pending-=1;if(pending===0)process.exit(code);};if(out){pending+=1;process.stdout.write(out,done);}if(err){pending+=1;process.stderr.write(err,done);}process.nextTick(done);};const rel=path.join('scripts','hooks','run-with-flags.js');const root=(function(){var p=require('path'),f=require('fs'),o=require('os');var e=process.env.CLAUDE_PLUGIN_ROOT;if(e&&e.trim())return e.trim();var d=p.join(o.homedir(),'.claude');function L(x){try{return require(p.join(x,'scripts','lib','resolve-ecc-root')).resolveEccRoot()}catch(_){return null}}var r=L(d);if(r)return r;var s=['ecc','ecc@ecc','marketplaces/ecc','everything-claude-code','everything-claude-code@everything-claude-code','marketplaces/everything-claude-code'];for(var i=0;i<s.length;i++){r=L(p.join(d,'plugins',s[i]));if(r)return r}try{var g=['ecc','everything-claude-code'];for(var j=0;j<g.length;j++){var c=p.join(d,'plugins','cache',g[j]);var O=f.readdirSync(c);for(var k=0;k<O.length;k++){var q=p.join(c,O[k]);var V=f.readdirSync(q);for(var m=0;m<V.length;m++){r=L(p.join(q,V[m]));if(r)return r}}}}catch(_){}return d})();const script=path.join(root,rel);if(fs.existsSync(script)){const result=spawnSync(process.execPath,[script,'stop:session-end','scripts/hooks/session-end.js','minimal,standard,strict'],{input:raw,encoding:'utf8',env:process.env,cwd:process.cwd(),timeout:30000,maxBuffer:16*1024*1024});const failed=result.error||result.status===null||result.signal;const stdout=!failed&&typeof result.stdout==='string'?result.stdout:'';let stderr=typeof result.stderr==='string'?result.stderr:'';let code=Number.isInteger(result.status)?result.status:0;if(failed){const reason=result.error?result.error.message:(result.signal?'signal '+result.signal:'missing exit status');stderr+='[Stop] ERROR: hook runner failed: '+reason+String.fromCharCode(10);code=1;}finish(stdout,stderr,code);}else{finish(raw,'[Stop] WARNING: could not resolve ECC plugin root; skipping hook'+String.fromCharCode(10),0);}\"",
-            "timeout": 10,
-            "async": true
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/adamfilchoir/.caveman/bin/caveman-proxy' native-hook claude --adapter '/opt/homebrew/lib/node_modules/@caveman-ai/cli/dist/native-hook-fast.js' --node '/opt/homebrew/bin/node'",
+            "timeout": 30
           }
         ]
       }
@@ -51,5 +154,14 @@
     }
   },
   "outputStyle": "Explanatory",
-  "theme": "dark"
+  "theme": "dark",
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:8787/w/claude",
+    "_CLAUDE_CODE_ASSUME_FIRST_PARTY_BASE_URL": "1",
+    "ENABLE_TOOL_SEARCH": "auto",
+    "ANTHROPIC_CUSTOM_MODEL_OPTION": "caveman-auto[1m]",
+    "ANTHROPIC_CUSTOM_MODEL_OPTION_NAME": "Auto",
+    "ANTHROPIC_CUSTOM_MODEL_OPTION_DESCRIPTION": "Caveman pick model + effort each turn. Hard ask, big brain. Easy ask, save rocks.",
+    "ANTHROPIC_CUSTOM_MODEL_OPTION_SUPPORTED_CAPABILITIES": "effort,max_effort,xhigh_effort,thinking,adaptive_thinking,interleaved_thinking"
+  }
 }

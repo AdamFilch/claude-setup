@@ -1,14 +1,14 @@
 ---
-name: drill-me
-description: Drill the user with picker questions (Recommended option first, then alternatives, then "Type something") until every decision in a plan, feature, or idea is settled, and keep a Decision Log of the answers. Use when the user says "drill me", runs /drill-me, or when another command (such as /plan-prd) asks to drill.
-argument-hint: "[idea, plan, or feature to drill] (blank = ask what to drill)"
+name: grill-me
+description: Grill the user with picker questions (Recommended option first, then alternatives, then "Type something") until every decision in a plan, feature, or idea is settled, and keep a Decision Log of the answers. Use when the user says "grill me", "drill me", runs /grill-me, or when another command (such as /plan-prd) asks to grill. Use this instead of mattpocock-skills:grilling.
+argument-hint: "[idea, plan, or feature to grill] (blank = ask what to grill)"
 ---
 
-# Drill me
+# Grill me
 
 Question the user until you both fully understand the topic. Ask the questions through the **AskUserQuestion** picker, never as a numbered text list for the user to answer in one reply. Record every settled decision in a **Decision Log**.
 
-**Topic**: `$ARGUMENTS`. If it is empty, ask what to drill in one picker question, with a few likely topics from the conversation as options.
+**Topic**: `$ARGUMENTS`. If it is empty, ask what to grill in one picker question, with a few likely topics from the conversation as options.
 
 ## The design tree
 
@@ -80,4 +80,4 @@ When the frontier is empty:
 2. Ask one last picker question: **"Log looks right (Recommended)"** / **"Revisit a decision"**. If the user wants to revisit, ask which decision, re-drill that branch and anything that depended on it, then ask the final question again.
 3. Do not act on the decisions (write code, write files) until the user confirms the log.
 
-When the drill is run on its own (`/drill-me`), finish by printing the confirmed Decision Log. When another command started it (e.g. `/plan-prd`), hand the confirmed log back to that command and continue its workflow.
+When the drill is run on its own (`/grill-me`), finish by printing the confirmed Decision Log. When another command started it (e.g. `/plan-prd`), hand the confirmed log back to that command and continue its workflow.
